@@ -23,7 +23,10 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 5601, host: 5601, auto_correct: true # Kibana
+  config.vm.network "forwarded_port", guest: 9200, host: 9200, auto_correct: true # Elasticsearch
+  config.vm.network "forwarded_port", guest: 5000, host: 5000, protocol: 'tcp', auto_correct: true # Logstash
+  config.vm.network "forwarded_port", guest: 5000, host: 5000, protocol: 'udp', auto_correct: true # Logstash
 
 
   # Create a private network, which allows host-only access to the machine
