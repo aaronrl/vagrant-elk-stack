@@ -1,5 +1,5 @@
-port: 5601
-host: "localhost"
+port: 8080
+host: "0.0.0.0"
 elasticsearch_url: "http://localhost:9200"
 elasticsearch_preserve_host: true
 kibana_index: ".kibana"
