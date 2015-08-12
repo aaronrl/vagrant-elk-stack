@@ -1,0 +1,1 @@
+# vagrant-elk-stack
