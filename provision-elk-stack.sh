@@ -3,11 +3,10 @@
 
 ### Oracle Java 8
 echo "### Install Oracle Java 8 ###############################################"
-sudo add-apt-repository -y ppa:webupd8team/java
+sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt-get update
-echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
-sudo apt-get -y install oracle-java8-installer
+sudo apt-get -y install openjdk-8-jdk
+java -version
 
 
 echo "### Download Elasticsearch ##############################################"
