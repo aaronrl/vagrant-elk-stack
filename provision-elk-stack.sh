@@ -1,8 +1,7 @@
 #!/bin/bash
 # Provision ELK stack
 
-### Oracle Java 8
-echo "### Install Oracle Java 8 ###############################################"
+echo "### Install OpenJDK 8 ###################################################"
 sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt-get update
 sudo apt-get -y install openjdk-8-jdk
