@@ -33,6 +33,9 @@ echo "### Copy default Logstash configuration #################################"
 sudo rm -f /etc/logstash/conf.d/logstash.conf
 sudo ln -s /vagrant-data/logstash.conf /etc/logstash/conf.d/logstash.conf
 
+echo "### Restart Logstash ####################################################"
+sudo service logstash restart
+
 echo "### Download Kibana #####################################################"
 cd ~; wget -nv https://download.elastic.co/kibana/kibana/kibana-4.1.1-linux-x64.tar.gz
 tar xf kibana-*.tar.gz
