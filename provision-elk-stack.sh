@@ -1,16 +1,17 @@
 #!/bin/bash
 # Provision ELK stack
 
-echo "### Install OpenJDK 8 ###################################################"
+echo "### Add custom package repository listings ##############################"
 sudo add-apt-repository ppa:openjdk-r/ppa
+wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
+echo 'deb http://packages.elasticsearch.org/elasticsearch/1.7/debian stable main' | sudo tee /etc/apt/sources.list.d/elasticsearch.list
+echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
 sudo apt-get update
+
+echo "### Install OpenJDK 8 ###################################################"
 sudo apt-get -y install openjdk-8-jdk
 java -version
 
-
-echo "### Download Elasticsearch ##############################################"
-wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
-echo 'deb http://packages.elasticsearch.org/elasticsearch/1.7/debian stable main' | sudo tee /etc/apt/sources.list.d/elasticsearch.list
 echo "### Install Elasticsearch ###############################################"
 sudo apt-get update
 sudo apt-get -y install elasticsearch
@@ -27,8 +28,6 @@ echo "### Install Elasticsearch-Kopf Management Plugin ########################"
 sudo /usr/share/elasticsearch/bin/plugin -install lmenezes/elasticsearch-kopf
 
 echo "### Install Logstash ####################################################"
-echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
-sudo apt-get update
 sudo apt-get -y install logstash
 
 echo "### Copy default Logstash configuration #################################"
