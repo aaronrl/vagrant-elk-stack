@@ -13,14 +13,13 @@ sudo apt-get -y install openjdk-8-jdk
 java -version
 
 echo "### Install Elasticsearch ###############################################"
-sudo apt-get update
 sudo apt-get -y install elasticsearch
 
 echo "### Copy default Elasticsearch configuration ############################"
 sudo rm -f /etc/elasticsearch/elasticsearch.yml
 sudo ln -s /vagrant-data/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 
-echo "### Restart Elasticsearch servce ########################################"
+echo "### Restart Elasticsearch service #######################################"
 sudo service elasticsearch restart
 sudo update-rc.d elasticsearch defaults 95 10
 
