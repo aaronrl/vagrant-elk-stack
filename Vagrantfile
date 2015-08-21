@@ -18,6 +18,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 9200, host: 9200, auto_correct: true # Elasticsearch
   config.vm.network "forwarded_port", guest: 5000, host: 5000, protocol: 'tcp', auto_correct: true # Logstash
   config.vm.network "forwarded_port", guest: 5000, host: 5000, protocol: 'udp', auto_correct: true # Logstash
+  config.vm.network "forwarded_port", guest: 15672, host: 15672, auto_correct: true # rabbitmq management page
 
 
   # Create a private network, which allows host-only access to the machine
@@ -34,13 +35,13 @@ Vagrant.configure(2) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+    vb.memory = "2048"
+  end
 
   # Enable provisioning with a shell script.
   config.vm.provision "shell", path: "provision-elk-stack.sh"
