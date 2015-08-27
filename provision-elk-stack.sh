@@ -45,6 +45,9 @@ echo "### Copy default Logstash configuration #################################"
 sudo rm -f /etc/logstash/conf.d/logstash.conf
 sudo ln -s /vagrant-data/logstash.conf /etc/logstash/conf.d/logstash.conf
 
+echo "### Update logstash plugins"
+sudo /opt/logstash/bin/plugin update
+
 echo "### Restart Logstash ####################################################"
 sudo service logstash restart
 
