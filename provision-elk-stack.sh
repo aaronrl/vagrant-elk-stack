@@ -69,18 +69,18 @@ sudo ln -s /vagrant-data/kibana.yml /opt/kibana/config/kibana.yml
 echo "### Start Kibana ########################################################"
 sudo service kibana4 start
 
-echo "### setup logstash2 #####################################################"
-sudo mkdir /var/log/logstash2
-sudo chown logstash:root /var/log/logstash2 -R
-sudo mkdir -p /etc/logstash2/conf.d
-sudo cp /etc/init.d/logstash /etc/init.d/logstash2
-sed -i -e 's/name=logstash/name=logstash2/g' /etc/init.d/logstash2
-sed -i -e 's%LS_LOG_DIR=/var/log/logstash%LS_LOG_DIR=/var/log/logstash2%g' /etc/init.d/logstash2
-sed -i -e 's%LS_CONF_DIR=/etc/logstash/conf.d%LS_CONF_DIR=/etc/logstash2/conf.d%g' /etc/init.d/logstash2
-sudo update-rc.d logstash2 defaults 96 9
+echo "### Duplicate Logstash setup for relay ##################################"
+sudo mkdir /var/log/logstash-relay
+sudo chown logstash:root /var/log/logstash-relay -R
+sudo mkdir -p /etc/logstash-relay/conf.d
+sudo cp /etc/init.d/logstash /etc/init.d/logstash-relay
+sed -i -e 's/name=logstash/name=logstash-relay/g' /etc/init.d/logstash-relay
+sed -i -e 's%LS_LOG_DIR=/var/log/logstash%LS_LOG_DIR=/var/log/logstash-relay%g' /etc/init.d/logstash-relay
+sed -i -e 's%LS_CONF_DIR=/etc/logstash/conf.d%LS_CONF_DIR=/etc/logstash-relay/conf.d%g' /etc/init.d/logstash-relay
+sudo update-rc.d logstash-relay defaults 96 9
 
-echo "### Copy default Logstash2 configuration #################################"
-sudo ln -s /vagrant-data/logstash2.conf /etc/logstash2/conf.d/logstash2.conf
+echo "### Copy default logstash-relay configuration ###########################"
+sudo ln -s /vagrant-data/logstash-relay.conf /etc/logstash-relay/conf.d/logstash-relay.conf
 
-echo "### Start logstash2 and partay ###########################################"
-sudo service logstash2 start
+echo "### Start logstash-relay ################################################"
+sudo service logstash-relay start
