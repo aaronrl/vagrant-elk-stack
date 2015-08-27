@@ -2,6 +2,7 @@
 # Provision ELK stack
 
 echo "### Add custom package repository listings ##############################"
+sudo apt-get -y install software-properties-common #required for add-apt-repository
 sudo add-apt-repository ppa:openjdk-r/ppa
 wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
 echo 'deb http://packages.elasticsearch.org/elasticsearch/1.7/debian stable main' | sudo tee /etc/apt/sources.list.d/elasticsearch.list
@@ -72,7 +73,7 @@ sudo mkdir -p /etc/logstash2/conf.d
 sudo cp /etc/init.d/logstash /etc/init.d/logstash2
 sed -i -e 's/name=logstash/name=logstash2/g' /etc/init.d/logstash2
 sed -i -e 's%LS_LOG_DIR=/var/log/logstash%LS_LOG_DIR=/var/log/logstash2%g' /etc/init.d/logstash2
-sed -i -e 's%LS_CONF_DIR=/etc/logstash/conf.d%LS_CONF_DIR=/etc/logstash2/conf.d%g' /etc/init.d/logstash2 
+sed -i -e 's%LS_CONF_DIR=/etc/logstash/conf.d%LS_CONF_DIR=/etc/logstash2/conf.d%g' /etc/init.d/logstash2
 sudo update-rc.d logstash2 defaults 96 9
 
 echo "### Copy default Logstash2 configuration #################################"
