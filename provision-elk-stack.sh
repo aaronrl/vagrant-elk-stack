@@ -74,9 +74,9 @@ sudo mkdir /var/log/logstash-relay
 sudo chown logstash:root /var/log/logstash-relay -R
 sudo mkdir -p /etc/logstash-relay/conf.d
 sudo cp /etc/init.d/logstash /etc/init.d/logstash-relay
-sed -i -e 's/name=logstash/name=logstash-relay/g' /etc/init.d/logstash-relay
-sed -i -e 's%LS_LOG_DIR=/var/log/logstash%LS_LOG_DIR=/var/log/logstash-relay%g' /etc/init.d/logstash-relay
-sed -i -e 's%LS_CONF_DIR=/etc/logstash/conf.d%LS_CONF_DIR=/etc/logstash-relay/conf.d%g' /etc/init.d/logstash-relay
+sudo sed -i -e 's/name=logstash/name=logstash-relay/g' /etc/init.d/logstash-relay
+sudo sed -i -e 's%LS_LOG_DIR=/var/log/logstash%LS_LOG_DIR=/var/log/logstash-relay%g' /etc/init.d/logstash-relay
+sudo sed -i -e 's%LS_CONF_DIR=/etc/logstash/conf.d%LS_CONF_DIR=/etc/logstash-relay/conf.d%g' /etc/init.d/logstash-relay
 sudo update-rc.d logstash-relay defaults 96 9
 
 echo "### Copy default logstash-relay configuration ###########################"
